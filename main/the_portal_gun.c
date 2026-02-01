@@ -32,6 +32,7 @@ void portal_toggled(void* arg)
     gpio_set_level(PORTAL_LIGHT_1_GREEN, state);
     gpio_set_level(PORTAL_LIGHT_2_GREEN, state);
     gpio_set_level(PORTAL_LIGHT_3_GREEN, state);
+    
     //dac_oneshot_output_voltage(speaker_oneshot_handle, state * 255);
     /*if(state)
         dac_cosine_start(speaker_cosine_handle);
