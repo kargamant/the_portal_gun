@@ -24,7 +24,7 @@ void portal_toggled(void* arg)
 {
     static uint8_t state = 0;
     static int8_t note_state = 0;
-    static bool note_direction = 1;
+    static int8_t note_direction = 1;
 
     state = ~state;
     state &= 0x01;
