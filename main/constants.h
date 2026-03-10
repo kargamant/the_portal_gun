@@ -1,6 +1,8 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "driver/dac_continuous.h"
+#include "freertos/task.h"
+#include "driver/gpio.h"
 
 // used pins
 #define PORTAL_TOGGLE_PIN 16
@@ -9,8 +11,26 @@
 #define PORTAL_LIGHT_3_GREEN 19
 #define SPEAKER_OUTPUT 26
 
-// speaker
-dac_continuous_handle_t speaker_handle;
+// speaker and audio
+dac_continuous_handle_t speaker_handle = NULL;
+TaskHandle_t audio_task_handle = NULL;
+dac_continuous_config_t speaker_config = {
+    .chan_mask = DAC_CHANNEL_MASK_CH1,
+    .desc_num = 4,
+    .buf_size = 2048,
+    .freq_hz = 16000,
+    .offset = 0,
+    .clk_src = DAC_DIGI_CLK_SRC_APLL,
+};
+
+// button
+gpio_config_t button_config = {
+    .pin_bit_mask = (1ULL << PORTAL_TOGGLE_PIN),
+    .mode = GPIO_MODE_INPUT,
+    .pull_up_en = GPIO_PULLUP_ENABLE,
+    .pull_down_en = GPIO_PULLDOWN_DISABLE,
+    .intr_type = GPIO_INTR_NEGEDGE
+};
 
 // portal openning sound
 const uint8_t portal_audio[] = {
