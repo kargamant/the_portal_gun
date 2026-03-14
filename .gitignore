@@ -1,1 +1,4 @@
 build/
+*.aup3
+*.mp3
+c_injection.txt
