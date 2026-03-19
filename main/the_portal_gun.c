@@ -1,10 +1,10 @@
 #include "utils.h"
 #include "constants.h"
 
+static uint8_t state = 0;
+
 void portal_toggled(void* arg)
 {
-    static uint8_t state = 0;
-
     state = ~state;
     state &= 0x01;
     gpio_set_level(PORTAL_LIGHT_1_GREEN, state);
@@ -21,7 +21,10 @@ void audio_task(void* params)
     {
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
-        play_audio(portal_audio, portal_audio_size);
+        if(state)
+            play_audio(portal_audio, portal_audio_size);
+        else
+            play_audio_inverse(portal_audio, portal_audio_size);    
     }
 }
 

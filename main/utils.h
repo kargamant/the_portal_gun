@@ -13,4 +13,6 @@ void init_led(uint8_t led_n);
 
 void play_audio(uint8_t* audio, size_t size);
 
+void play_audio_inverse(uint8_t* audio, size_t size);
+
 #endif
