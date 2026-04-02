@@ -22,9 +22,9 @@ void audio_task(void* params)
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
         if(state)
-            play_audio(portal_audio, portal_audio_size);
+            play_audio(open_audio, open_audio_size);
         else
-            play_audio_inverse(portal_audio, portal_audio_size);    
+            play_audio(close_audio, close_audio_size);    
     }
 }
 
